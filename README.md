@@ -6,4 +6,4 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 ## TODO
 - [ ] Fix whoami service or swap for ping service
 - [ ] Configure Nextcloud
-- [ ] Migrate from docker-compose to docker stack or kubernetes (local e.g. minikube)
+- [ ] Migrate from docker-compose to docker stack or kubernetes (local e.g. minikube) due to managing cpu and memory limits
