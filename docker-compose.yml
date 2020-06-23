@@ -1,0 +1,59 @@
+version: "3.3"
+
+networks:
+  default:
+    external:
+      name: $DOCKER_NETWORK
+
+services:
+  traefik:
+    image: traefik:v2.2
+    container_name: traefik
+    command:
+      #- --log.level=DEBUG
+      #- --api.insecure=tru
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.http.redirections.entryPoint.to=websecure
+      - --entrypoints.web.http.redirections.entryPoint.scheme=https
+      - --certificatesresolvers.myresolver.acme.httpchallenge=true
+      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.myresolver.acme.email=$EMAIL
+      - --certificatesresolvers.myresolver.acme.storage=/letsEncrypt/acme.json
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /data/traefik/letsEncrypt:/letsEncrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWD1}"
+      - "traefik.http.routers.api.rule=Host(`traefik.$DOMAIN_NAME`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=auth"
+
+  jupyter:
+    depends_on:
+      - traefik
+    container_name: jupyter
+    #image: jupyter/minimal-notebook:dd2087c75645
+    build:
+      context: /data/jupyter
+      dockerfile: Dockerfile
+      args:
+        NB_USER: $USERNAME
+    restart: unless-stopped
+    volumes:
+      - /data/jupyter/projects:/home/$USERNAME/work
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jupyter.rule=Host(`jupyter.$DOMAIN_NAME`)"
+      - "traefik.http.services.jupyter.loadbalancer.server.port=8888"
+      - "traefik.http.routers.jupyter.entrypoints=websecure"
+      - "traefik.http.routers.jupyter.tls.certresolver=myresolver"
+      - "traefik.http.routers.jupyter.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWD1}" # is this needed
