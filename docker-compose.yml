@@ -12,7 +12,7 @@ services:
     command:
       #- --log.level=DEBUG
       - --api=true
-      - --api.insecure=true # test disabled
+      #- --api.insecure=true # test disabled
       - --api.dashboard=true
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
@@ -20,10 +20,10 @@ services:
       - --entrypoints.websecure.address=:443
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
-      - --certificatesresolvers.myresolver.acme.httpchallenge=true
-      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
-      - --certificatesresolvers.myresolver.acme.email=$EMAIL
-      - --certificatesresolvers.myresolver.acme.storage=/letsEncrypt/acme.json
+      - --certificatesresolvers.leresolver.acme.httpchallenge=true
+      - --certificatesresolvers.leresolver.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.leresolver.acme.email=$EMAIL
+      - --certificatesresolvers.leresolver.acme.storage=/letsEncrypt/acme.json
     ports:
       - 80:80
       - 443:443
@@ -32,10 +32,25 @@ services:
       - /data/traefik/letsEncrypt:/letsEncrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
     labels:
-      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWORD1}" # needed on every service?
       - "traefik.http.routers.api.rule=Host(`traefik.$DOMAIN_NAME`)"
       - "traefik.http.routers.api.service=api@internal"
       - "traefik.http.routers.api.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWORD1}"
+      #- "traefik.http.services.api.loadbalancer.server.port=8080"
+
+  whoami:
+    image: "containous/whoami"
+    container_name: "whoami"
+    depends_on:
+      - traefik
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.$DOMAIN_NAME`)"
+      - "traefik.http.services.whoami.loadbalancer.server.port=80"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=leresolver"
+      - "traefik.http.routers.whoami.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWORD1}"
 
   jupyter:
     depends_on:
@@ -45,13 +60,15 @@ services:
     restart: unless-stopped
     volumes:
       - /data/jupyter/projects:/home/$USERNAME/work
+      - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jupyter.rule=Host(`jupyter.$DOMAIN_NAME`)"
       - "traefik.http.services.jupyter.loadbalancer.server.port=8888"
       - "traefik.http.routers.jupyter.entrypoints=websecure"
-      - "traefik.http.routers.jupyter.tls.certresolver=myresolver"
+      - "traefik.http.routers.jupyter.tls.certresolver=leresolver"
       - "traefik.http.routers.jupyter.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWORD1}"
 
   vscode:
     image: "codercom/code-server:3.4.1"
@@ -62,12 +79,15 @@ services:
     restart: unless-stopped
     volumes:
       - /data/vscode/projects:/home/coder/project
+      - /var/run/docker.sock:/var/run/docker.sock
     user: $PUID:$PGID
+    entrypoint: ["dumb-init", "fixuid", "-q", "/usr/bin/code-server", "--auth", "none", "--bind-addr", "0.0.0.0:8080", "." ] # https://github.com/cdr/code-server/blob/master/ci/release-image/Dockerfile
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jupyter.rule=Host(`vscode.$DOMAIN_NAME`)"
+      - "traefik.http.routers.vscode.rule=Host(`vscode.$DOMAIN_NAME`)"
       - "traefik.http.services.vscode.loadbalancer.server.port=8080"
       - "traefik.http.routers.vscode.entrypoints=websecure"
-      - "traefik.http.routers.vscode.tls.certresolver=myresolver"
+      - "traefik.http.routers.vscode.tls.certresolver=leresolver"
       - "traefik.http.routers.vscode.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=${AUTH_USERNAME1}:${AUTH_PASSWORD1}"
 

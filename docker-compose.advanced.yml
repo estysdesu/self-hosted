@@ -1,12 +1,5 @@
 version: "3"
 
-# apt install ufw
-
-networks:
-  default:
-    external:
-      name: $DOCKER_NETWORK
-
 services:
   traefik:
     image: "traefik:v2.0.0"
@@ -45,29 +38,6 @@ services:
     #  # middleware redirect
     #  - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
-  whoami:
-    image: "containous/whoami"
-    container_name: "whoami"
-    depends_on:
-      - traefik
-    restart: unless-stopped
-    labels:
-      - "traefik.http.routers.whoami.rule=Host(`whoami.estysdesu.tk`)"
-  #    - "traefik.http.routers.whoami.middlewares=authwhoami"
-  #    - "traefik.http.routers.whoami.entrypoints=websecure"
-  #    - "traefik.http.routers.whoami.tls=true"
-  #    - "traefik.http.routers.whoami.tls.certresolver=leresolver"
-  #    - "traefik.http.middlewares.authwhoami.basicauth.users=user:$$apr1$$q8eZFHjF$$Fvmkk//V6Btlaf2i/ju5n/" # user/password
-  #vscode:
-  #  image: "codercom/code-server:3.4.1"
-  #  container_name: "vscode"
-  #  hostname: "vscode"
-  #  depends_on:
-  #    - caddy
-  #  restart: unless-stopped
-  #  volumes:
-  #    - /data/vscode/projects:/home/coder/project
-  #  user: $PUID:$PGID
   #nextcloud-db:
   #        container_name: nextcloud-db
   #        image: mariadb:10.3.12
