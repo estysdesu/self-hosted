@@ -3,7 +3,7 @@
 
 self-hosted is a my personal maintained infrastructure as files of my self-hosted server.
 
-## TODO Major
+## TODO Infrastructure
 - [ ] Deployment: 
   1. Kubernetes: [Minikube](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) and [Helm](https://helm.sh/)
   1. Nix: [NixOps](https://nixos.org/nixops/manual/)
