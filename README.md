@@ -18,9 +18,11 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] Cloud: [Nextcloud](https://blog.ssdnodes.com/blog/self-hosting-nextcloud/#Why_is_selfhosting_Nextcloud_a_good_idea_13)
 - [ ] Password store: [Bitwarden](https://selfhostedhome.com/self-host-password-management-bitwarden/) (bitwarden_rs)
 - [ ] Tracking: [Kanboard](https://github.com/kanboard/kanboard)
+- [ ] Website: 
+  1. Build and host on Github and point Traefik or Cloudflare to Github site
+  1. Self host static files
+- [ ] Remove: 
+  1. VS Code 
+  1. Jupyter
 
 ## TODO Updates
-- [ ] VS Code:
-  1. [Settings sync](https://github.com/cdr/code-server/issues/148)
-  1. [`working_dir`](https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir) = `/home/coder/project`
-- [ ] Add theming & settings to [my Jupyter docker image](https://github.com/estysdesu/jupyter-stack)
