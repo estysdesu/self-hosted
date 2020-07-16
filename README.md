@@ -24,7 +24,12 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
   1. Build and host on Github and point Traefik or Cloudflare to Github site
   1. Self host static files
 - [ ] Remove: 
-  1. VS Code?
-  1. Jupyter?
+  1. VS Code? (cloud VM won't be powerful)
+  1. Jupyter? (cloud VM won't be powerful)
 
 ## TODO Updates
+- [ ] VS Code:	
+  1. [Settings sync](https://github.com/cdr/code-server/issues/148)	
+  1. [`working_dir`](https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir) = `/home/coder/project`	
+- [ ] Jupyter:
+  1. Theming & settings ([my Jupyter docker image](https://github.com/estysdesu/jupyter-stack))
