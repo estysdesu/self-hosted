@@ -20,6 +20,7 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] Tracking: [Kanboard](https://github.com/kanboard/kanboard)
 
 ## TODO Updates
-- [ ] Build custom vscode container for [settings sync](https://github.com/cdr/code-server/issues/148)
-- [ ] Change [`working_dir`](https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir) for vscode to `/home/coder/project`
+- [ ] VS Code:
+  1. [Settings sync](https://github.com/cdr/code-server/issues/148)
+  1. [`working_dir`](https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir) = `/home/coder/project`
 - [ ] Add theming & settings to [my Jupyter docker image](https://github.com/estysdesu/jupyter-stack)
