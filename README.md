@@ -23,6 +23,7 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] Website: 
   1. Build and host on Github and point Traefik or Cloudflare to Github site
   1. Self host static files
+  1. Migrate to Hugo
 - [ ] Remove: 
   1. VS Code? (cloud VM won't be powerful)
   1. Jupyter? (cloud VM won't be powerful)
