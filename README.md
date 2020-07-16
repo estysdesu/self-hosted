@@ -5,13 +5,12 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 
 ## TODO Major
 - [ ] Deployment: 
-  1. [ ] Kubernetes: [Minikube](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) and [Helm](https://helm.sh/)
-  1. [ ] Nix: [NixOps](https://nixos.org/nixops/manual/)
+  1. Kubernetes: [Minikube](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/) and [Helm](https://helm.sh/)
+  1. Nix: [NixOps](https://nixos.org/nixops/manual/)
 - [ ] OS: 
   1. [Fedora Server 32](https://getfedora.org/en/server/download/)
   1. [NixOS](https://nixos.wiki/wiki/Install_NixOS_on_Hetzner_Online) (Hetzner Cloud (VM) not Online (bare metal))
 - [ ] FS: btrfs
-
 
 ## TODO Services
 - [ ] Dash: [Traefik dash](https://docs.traefik.io/operations/dashboard/) [rule](https://docs.traefik.io/v2.2/operations/dashboard/#dashboard-router-rule)
@@ -23,4 +22,4 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 ## TODO Updates
 - [ ] Build custom vscode container for [settings sync](https://github.com/cdr/code-server/issues/148)
 - [ ] Change [`working_dir`](https://docs.docker.com/compose/compose-file/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir) for vscode to `/home/coder/project`
-- [ ] Add settings to Jupyter docker image
+- [ ] Add theming & settings to [my Jupyter docker image](https://github.com/estysdesu/jupyter-stack)
