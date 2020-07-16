@@ -24,7 +24,7 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
   1. Build and host on Github and point Traefik or Cloudflare to Github site
   1. Self host static files
 - [ ] Remove: 
-  1. VS Code 
-  1. Jupyter
+  1. VS Code?
+  1. Jupyter?
 
 ## TODO Updates
