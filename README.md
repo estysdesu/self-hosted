@@ -1,5 +1,5 @@
 # self-hosted
-![](https://img.shields.io/website?down_color=red&up_color=green&url=https%3A%2F%2Ftraefik.estysdesu.com)
+![](https://img.shields.io/website?url=https%3A%2F%2Ftraefik.estysesu.com)
 
 self-hosted is a my personal maintained infrastructure as files of my self-hosted server.
 
