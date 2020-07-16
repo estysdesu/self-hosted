@@ -13,20 +13,19 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] FS: btrfs
 
 ## TODO Services
-- [ ] Dash: [Traefik dash](https://docs.traefik.io/operations/dashboard/) [rule](https://docs.traefik.io/v2.2/operations/dashboard/#dashboard-router-rule)
-- [ ] RSS reader: [Miniflux](https://github.com/miniflux/miniflux)
-- [ ] Cloud: [Nextcloud](https://blog.ssdnodes.com/blog/self-hosting-nextcloud/#Why_is_selfhosting_Nextcloud_a_good_idea_13)
-- [ ] Password store: 
-  1. [Bitwarden](https://selfhostedhome.com/self-host-password-management-bitwarden/) (bitwarden_rs)
-  1. [Pass](https://www.passwordstore.org/)
-- [ ] Tracking: [Kanboard](https://github.com/kanboard/kanboard)
-- [ ] Website: 
-  1. Build and host on Github and point Traefik or Cloudflare to Github site
-  1. Self host static files
-  1. Migrate to Hugo
-- [ ] Remove: 
-  1. VS Code? (cloud VM won't be powerful)
-  1. Jupyter? (cloud VM won't be powerful)
+- [ ] **Limit services**: 
+  1. root: estysdesu.github.io (migrate to hugo)
+  1. cloud: [Nextcloud](https://blog.ssdnodes.com/blog/self-hosting-nextcloud/#Why_is_selfhosting_Nextcloud_a_good_idea_13)
+  1. passwd: [Bitwarden](https://selfhostedhome.com/self-host-password-management-bitwarden/) (bitwarden_rs)
+  1. rss: [Miniflux](https://github.com/miniflux/miniflux)
+  1. todo: [Kanboard](https://github.com/kanboard/kanboard)
+  1. dev (if VM powerful enough)
+    1. **?** VS Code (OTG editing)
+    1. **?** Jupyter (allows UI looking the same without customizing every machine)
+  1. monitoring
+    1. **?** [cockpit](https://cockpit-project.org/) (if Fedora)
+    1. [traefik dash](https://docs.traefik.io/operations/dashboard/)
+    1. [homer](https://github.com/bastienwirtz/homer)
 
 ## TODO Updates
 - [ ] VS Code:	
