@@ -12,3 +12,4 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] Fix traefik [dashboard](https://docs.traefik.io/v2.2/operations/dashboard/#dashboard-router-rule)
 - [ ] Migrate from docker-compose to docker stack or kubernetes (local e.g. minikube) and [helm](https://helm.sh/) due to managing cpu and memory limits
 - [ ] Migrate from Debian to Fedora server or CoreOS
+- [ ] Add [Kanboard](https://github.com/kanboard/kanboard)
