@@ -16,7 +16,9 @@ self-hosted is a my personal maintained infrastructure as files of my self-hoste
 - [ ] Dash: [Traefik dash](https://docs.traefik.io/operations/dashboard/) [rule](https://docs.traefik.io/v2.2/operations/dashboard/#dashboard-router-rule)
 - [ ] RSS reader: [Miniflux](https://github.com/miniflux/miniflux)
 - [ ] Cloud: [Nextcloud](https://blog.ssdnodes.com/blog/self-hosting-nextcloud/#Why_is_selfhosting_Nextcloud_a_good_idea_13)
-- [ ] Password store: [Bitwarden](https://selfhostedhome.com/self-host-password-management-bitwarden/) (bitwarden_rs)
+- [ ] Password store: 
+  1. [Bitwarden](https://selfhostedhome.com/self-host-password-management-bitwarden/) (bitwarden_rs)
+  1. [Pass](https://www.passwordstore.org/)
 - [ ] Tracking: [Kanboard](https://github.com/kanboard/kanboard)
 - [ ] Website: 
   1. Build and host on Github and point Traefik or Cloudflare to Github site
